@@ -4,15 +4,17 @@ public class Meeting {
 
     private int meetingId;
     private String description;
-    private String date;
+    private String address;
+    private int time;
 
-    public Meeting(){
+    public Meeting() {
     }
 
-    public Meeting(int meetingId, String description, String date) {
+    public Meeting(int meetingId, String description, String address, int time) {
         this.meetingId = meetingId;
         this.description = description;
-        this.date = date;
+        this.address = address;
+        this.time = time;
     }
 
     public int getMeetingId() {
@@ -31,12 +33,20 @@ public class Meeting {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
+    public String getAddress() {
+        return address;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
     }
 
     @Override
@@ -44,7 +54,8 @@ public class Meeting {
         return "Meeting{" +
                 "meetingId=" + meetingId +
                 ", description='" + description + '\'' +
-                ", date='" + date + '\'' +
+                ", address='" + address + '\'' +
+                ", time=" + time +
                 '}';
     }
 }

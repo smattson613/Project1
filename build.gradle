@@ -21,3 +21,13 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+task customFatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'dev.mattson.app.App'
+    }
+    baseName = 'Complaint-App'
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
