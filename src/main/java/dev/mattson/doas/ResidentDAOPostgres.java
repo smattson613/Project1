@@ -4,7 +4,7 @@ import dev.mattson.entities.Resident;
 
 import java.util.List;
 
-public class ResidentDAOPostgres implements ResidentDao{
+public class ResidentDAOPostgres implements ResidentDAO {
     @Override
     public Resident createResident(Resident resident) {
         return null;

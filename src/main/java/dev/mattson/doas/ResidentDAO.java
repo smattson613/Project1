@@ -4,7 +4,7 @@ import dev.mattson.entities.Resident;
 
 import java.util.List;
 
-public interface ResidentDao {
+public interface ResidentDAO {
 
     //Create a Resident
     Resident createResident(Resident resident);

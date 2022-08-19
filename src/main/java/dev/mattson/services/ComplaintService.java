@@ -1,6 +1,7 @@
 package dev.mattson.services;
 
 import dev.mattson.entities.Complaint;
+import dev.mattson.entities.Status;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ public interface ComplaintService {
 
     boolean deleteComplaint(int id);
 
-    Complaint modifyComplaint(Complaint complaint);
+    Complaint modifyComplaint(int id, Status status);
 }

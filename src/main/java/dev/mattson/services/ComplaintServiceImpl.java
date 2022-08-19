@@ -2,6 +2,7 @@ package dev.mattson.services;
 
 import dev.mattson.doas.ComplaintDAO;
 import dev.mattson.entities.Complaint;
+import dev.mattson.entities.Status;
 
 import java.util.List;
 
@@ -21,12 +22,12 @@ public class ComplaintServiceImpl implements ComplaintService{
 
     @Override
     public Complaint retrieveComplaintById(int id) {
-        return null;
+        return this.complaintDAO.getComplaintById(id);
     }
 
     @Override
     public List<Complaint> getAllComplaints() {
-        return null;
+        return this.complaintDAO.getAllComplaints();
     }
 
     @Override
@@ -35,7 +36,9 @@ public class ComplaintServiceImpl implements ComplaintService{
     }
 
     @Override
-    public Complaint modifyComplaint(Complaint complaint) {
-        return null;
+    public Complaint modifyComplaint(int id, Status status) {
+        Complaint complaint = this.complaintDAO.getComplaintById(id);
+        complaint.setStatus(status);
+        return this.complaintDAO.updateComplaint(complaint);
     }
 }
