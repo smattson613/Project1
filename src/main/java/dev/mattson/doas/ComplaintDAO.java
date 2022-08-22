@@ -1,7 +1,5 @@
 package dev.mattson.doas;
 
-
-
 import dev.mattson.entities.Complaint;
 
 import java.util.List;

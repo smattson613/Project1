@@ -14,6 +14,7 @@ public class ComplaintDAOPostgres implements ComplaintDAO{
         try (Connection conn = ConnectionUtil.createConnection()) {
             String sql = "insert into complaint values (default, ?, ?, default, default)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+
             preparedStatement.setString(1, complaint.getTitle());
             preparedStatement.setString(2, complaint.getDescription());
 
@@ -52,6 +53,7 @@ public class ComplaintDAOPostgres implements ComplaintDAO{
             complaint.setMeetingId(rs.getInt("meetingID"));
 
             return complaint;
+
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -75,8 +77,8 @@ public class ComplaintDAOPostgres implements ComplaintDAO{
                 complaint.setStatus(Status.valueOf(rs.getString("status")));
                 complaint.setMeetingId(rs.getInt("meetingId"));
                 complaintList.add(complaint);
-
             }
+
             return complaintList;
 
         } catch (SQLException e) {

@@ -3,6 +3,7 @@ package dev.mattson.daotests;
 import dev.mattson.doas.ComplaintDAO;
 import dev.mattson.doas.ComplaintDAOPostgres;
 import dev.mattson.entities.Complaint;
+import dev.mattson.entities.Status;
 import dev.mattson.utils.ConnectionUtil;
 import org.junit.jupiter.api.*;
 
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static dev.mattson.entities.Status.HIGH_PRIORITY;
 import static dev.mattson.entities.Status.UNREVIEWED;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -42,6 +44,15 @@ public class ComplaintDAOTests {
         Complaint savedComplaint = complaintDAO.createComplaint(complaint);
         Assertions.assertEquals(1,savedComplaint.getComplaintId());
     }
+
+//    @Test
+//    @Order(2)
+//    void update_complaint_priority_test() {
+//        Complaint complaint = new Complaint(0,"Griffon Attacks","Griffon attacking on roads outside of town",UNREVIEWED,-1);
+//        Complaint patchedComplaint = complaintDAO.updateComplaint(complaint.setStatus(HIGH_PRIORITY));
+//        Assertions.assertEquals(HIGH_PRIORITY,patchedComplaint.getStatus());
+//
+//    }
 
     @AfterAll
     static void teardown() {
