@@ -109,4 +109,22 @@ public class ComplaintDAOPostgres implements ComplaintDAO{
     public boolean deleteComplaintById(int id) {
         return false;
     }
+
+    @Override
+    public Complaint modifyComplaintMeetingId(Complaint complaint) {
+        try (Connection conn = ConnectionUtil.createConnection()) {
+            String sql = "update complaint set meetingId = ? where complaintId = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+
+            preparedStatement.setInt(1, complaint.getMeetingId());
+            preparedStatement.setInt(2, complaint.getComplaintId());
+
+            preparedStatement.executeUpdate();
+
+            return complaint;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

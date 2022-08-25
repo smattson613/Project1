@@ -10,6 +10,7 @@ import dev.mattson.entities.Resident;
 import dev.mattson.handlers.complainthandlers.CreateComplaintHandler;
 import dev.mattson.handlers.complainthandlers.GetAllComplaintsHandler;
 import dev.mattson.handlers.complainthandlers.UpdateComplaintHandler;
+import dev.mattson.handlers.complainthandlers.UpdateComplaintMeetingHandler;
 import dev.mattson.handlers.meetinghandlers.CreateMeetingHandler;
 import dev.mattson.handlers.meetinghandlers.GetAllMeetingsHandlers;
 import dev.mattson.handlers.residenthandlers.CreateResidentHandler;
@@ -32,6 +33,8 @@ public class App {
         CreateComplaintHandler createComplaintHandler = new CreateComplaintHandler();
         GetAllComplaintsHandler getAllComplaintsHandler = new GetAllComplaintsHandler();
         UpdateComplaintHandler updateComplaintHandler = new UpdateComplaintHandler();
+        UpdateComplaintMeetingHandler updateComplaintMeetingHandler = new UpdateComplaintMeetingHandler();
+
 
         //Meeting Handlers
         CreateMeetingHandler createMeetingHandler = new CreateMeetingHandler();
@@ -43,6 +46,7 @@ public class App {
         app.post("/complaint",createComplaintHandler);
         app.get("/complaints",getAllComplaintsHandler);
         app.patch("/complaints/{complaintId}/{status}",updateComplaintHandler);
+        app.patch("assign/{complaintId}/{meetingId}", updateComplaintMeetingHandler);
 
         app.post("/meeting",createMeetingHandler);
         app.get("/meetings",getAllMeetingsHandlers);

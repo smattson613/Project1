@@ -21,5 +21,5 @@ public interface ComplaintDAO {
     boolean deleteComplaintById(int id);
 
     //patch a complaint
-//    Complaint modifyComplaint(int id, Status status);
+    Complaint modifyComplaintMeetingId(Complaint complaint);
 }

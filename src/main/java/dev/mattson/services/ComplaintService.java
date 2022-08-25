@@ -16,4 +16,6 @@ public interface ComplaintService {
     boolean deleteComplaint(int id);
 
     Complaint modifyComplaint(int id, Status status);
+
+    Complaint modifyComplaintMeetingId(int complaintId, int meetingId);
 }
