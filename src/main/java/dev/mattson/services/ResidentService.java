@@ -15,4 +15,6 @@ public interface ResidentService {
     boolean deleteResident(int id);
 
     Resident modifyResident(Resident resident);
+
+    Resident getResidentByUsername(String username);
 }

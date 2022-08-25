@@ -1,13 +1,22 @@
 package dev.mattson.services;
 
+import dev.mattson.doas.ResidentDAO;
 import dev.mattson.entities.Resident;
 
 import java.util.List;
 
 public class ResidentServiceImpl implements ResidentService{
+
+    private ResidentDAO residentDAO;
+
+    public ResidentServiceImpl(ResidentDAO residentDAO) {
+        this.residentDAO = residentDAO;
+    }
+
     @Override
     public Resident registerResident(Resident resident) {
-        return null;
+        Resident savedResident = this.residentDAO.createResident(resident);
+        return savedResident;
     }
 
     @Override
@@ -28,5 +37,10 @@ public class ResidentServiceImpl implements ResidentService{
     @Override
     public Resident modifyResident(Resident resident) {
         return null;
+    }
+
+    @Override
+    public Resident getResidentByUsername(String username) {
+        return this.residentDAO.getResidentByUsername(username);
     }
 }

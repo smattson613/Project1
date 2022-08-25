@@ -16,7 +16,7 @@ public class MeetingDAOPostgres implements MeetingDAO{
 
             preparedStatement.setString(1,meeting.getDescription());
             preparedStatement.setString(2,meeting.getAddress());
-            preparedStatement.setInt(3,meeting.getTime());
+            preparedStatement.setLong(3,meeting.getTime());
 
             preparedStatement.execute();
 
@@ -49,7 +49,7 @@ public class MeetingDAOPostgres implements MeetingDAO{
             meeting.setMeetingId(rs.getInt("meetingId"));
             meeting.setDescription(rs.getString("description"));
             meeting.setAddress(rs.getString("address"));
-            meeting.setTime(rs.getInt("time"));
+            meeting.setTime(rs.getLong("time"));
 
             return meeting;
 
@@ -73,7 +73,7 @@ public class MeetingDAOPostgres implements MeetingDAO{
                 meeting.setMeetingId(rs.getInt("meetingId"));
                 meeting.setDescription(rs.getString("description"));
                 meeting.setAddress(rs.getString("address"));
-                meeting.setTime(rs.getInt("time"));
+                meeting.setTime(rs.getLong("time"));
                 meetingList.add(meeting);
             }
 

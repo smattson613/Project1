@@ -1,6 +1,7 @@
 package dev.mattson.doas;
 
 import dev.mattson.entities.Complaint;
+import dev.mattson.entities.Status;
 
 import java.util.List;
 
@@ -18,4 +19,7 @@ public interface ComplaintDAO {
 
     //Delete a complaint
     boolean deleteComplaintById(int id);
+
+    //patch a complaint
+//    Complaint modifyComplaint(int id, Status status);
 }

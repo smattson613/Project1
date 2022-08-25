@@ -18,4 +18,7 @@ public interface ResidentDAO {
 
     //Delete and employee
     boolean deleteResidentById(int id);
+
+    //Get resident by username for login
+    Resident getResidentByUsername(String username);
 }

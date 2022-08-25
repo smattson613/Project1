@@ -2,6 +2,7 @@ package dev.mattson.daotests;
 
 import dev.mattson.doas.MeetingDAO;
 import dev.mattson.doas.MeetingDAOPostgres;
+import dev.mattson.entities.Complaint;
 import dev.mattson.entities.Meeting;
 import dev.mattson.utils.ConnectionUtil;
 import org.junit.jupiter.api.*;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class MeetingDAOTests {
@@ -33,11 +35,27 @@ public class MeetingDAOTests {
     }
 
     @Test
+    @Order(1)
     void create_meeting_test() {
         Meeting meeting = new Meeting(0,"Test Meeting","Town Hall",0);
         Meeting savedMeeting = meetingDAO.createMeeting(meeting);
         Assertions.assertEquals(1,savedMeeting.getMeetingId());
     }
+
+    @Test
+    @Order(3)
+    void get_meeting_by_id_test() {
+        Meeting meeting = meetingDAO.getMeetingById(1);
+        Assertions.assertEquals("Town Hall",meeting.getAddress());
+    }
+
+    @Test
+    @Order(3)
+    void get_all_meetings_test() {
+        List<Meeting> meetingList = meetingDAO.getAllMeetings();
+        Assertions.assertEquals(1,meetingList.size());
+    }
+
 
     @AfterAll
     static void teardown() {

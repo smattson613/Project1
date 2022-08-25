@@ -5,12 +5,12 @@ public class Meeting {
     private int meetingId;
     private String description;
     private String address;
-    private int time;
+    private long time;
 
     public Meeting() {
     }
 
-    public Meeting(int meetingId, String description, String address, int time) {
+    public Meeting(int meetingId, String description, String address, long time) {
         this.meetingId = meetingId;
         this.description = description;
         this.address = address;
@@ -41,11 +41,11 @@ public class Meeting {
         this.address = address;
     }
 
-    public int getTime() {
+    public long getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(long time) {
         this.time = time;
     }
 
