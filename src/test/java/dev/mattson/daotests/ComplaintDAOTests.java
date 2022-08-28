@@ -20,23 +20,23 @@ public class ComplaintDAOTests {
 
     static ComplaintDAO complaintDAO = new ComplaintDAOPostgres();
 
-    @BeforeAll
-    static void setup(){
-        try(Connection conn = ConnectionUtil.createConnection()){
-            String sql = "create table complaint(\n" +
-                    "complaintId serial primary key,\n" +
-                    "title varchar(40) not null,\n" +
-                    "description varchar(180) not null,\n" +
-                    "status varchar(15) default 'UNREVIEWED',\n" +
-                    "meetingId int references meeting(meetingId) default -1\n" +
-                    ");";
-            Statement statement = conn.createStatement();
-            statement.execute(sql);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    @BeforeAll
+//    static void setup(){
+//        try(Connection conn = ConnectionUtil.createConnection()){
+//            String sql = "create table complaint(\n" +
+//                    "complaintId serial primary key,\n" +
+//                    "title varchar(40) not null,\n" +
+//                    "description varchar(180) not null,\n" +
+//                    "status varchar(15) default 'UNREVIEWED',\n" +
+//                    "meetingId int references meeting(meetingId) default -1\n" +
+//                    ");";
+//            Statement statement = conn.createStatement();
+//            statement.execute(sql);
+//
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
     @Order(1)
@@ -52,31 +52,42 @@ public class ComplaintDAOTests {
         Complaint complaint = complaintDAO.getComplaintById(1);
         complaint.setStatus(HIGH_PRIORITY);
         complaintDAO.updateComplaint(complaint);
-        Assertions.assertEquals(HIGH_PRIORITY,complaint.getStatus());
+        Complaint complaint2 = complaintDAO.getComplaintById(1);
+        Assertions.assertEquals(HIGH_PRIORITY,complaint2.getStatus());
     }
 
     @Test
     @Order(3)
+    void modify_complaint_meeting_id_test() {
+        Complaint complaint = complaintDAO.getComplaintById(1);
+        complaint.setMeetingId(1);
+        complaintDAO.modifyComplaintMeetingId(complaint);
+        Complaint complaint2 = complaintDAO.getComplaintById(1);
+        Assertions.assertEquals(1,complaint2.getMeetingId());
+    }
+
+    @Test
+    @Order(4)
     void get_complaints_by_id() {
         Complaint complaint = complaintDAO.getComplaintById(1);
         Assertions.assertEquals("Drowners",complaint.getTitle());
     }
 
     @Test
-    @Order(4)
+    @Order(5)
     void get_all_complaints() {
         List<Complaint> complaintList = complaintDAO.getAllComplaints();
         Assertions.assertEquals(1,complaintList.size());
     }
 
-    @AfterAll
-    static void teardown() {
-        try (Connection conn = ConnectionUtil.createConnection()) {
-            String sql = "drop table complaint";
-            Statement statement = conn.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    @AfterAll
+//    static void teardown() {
+//        try (Connection conn = ConnectionUtil.createConnection()) {
+//            String sql = "drop table complaint";
+//            Statement statement = conn.createStatement();
+//            statement.execute(sql);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

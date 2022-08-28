@@ -2,6 +2,8 @@ package dev.mattson.services;
 
 import dev.mattson.doas.ResidentDAO;
 import dev.mattson.entities.Resident;
+import dev.mattson.exceptions.NoUsernameFoundException;
+import dev.mattson.exceptions.PasswordMismatchException;
 
 public class LoginServiceImpl implements LoginService{
 
@@ -14,10 +16,10 @@ public class LoginServiceImpl implements LoginService{
     public Resident validateUser(String username, String password) {
         Resident resident = this.residentDAO.getResidentByUsername(username);
         if (resident == null) {
-            throw new RuntimeException("No resident found with that username");
+            throw new NoUsernameFoundException("No resident found with that username");
         }
         if (!resident.getPassword().equals(password)) {
-            throw new RuntimeException("password does not match");
+            throw new PasswordMismatchException("password does not match");
         }
         return resident;
     }

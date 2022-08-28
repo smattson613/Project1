@@ -35,11 +35,11 @@ public class App {
         UpdateComplaintHandler updateComplaintHandler = new UpdateComplaintHandler();
         UpdateComplaintMeetingHandler updateComplaintMeetingHandler = new UpdateComplaintMeetingHandler();
 
-
         //Meeting Handlers
         CreateMeetingHandler createMeetingHandler = new CreateMeetingHandler();
         GetAllMeetingsHandlers getAllMeetingsHandlers = new GetAllMeetingsHandlers();
 
+        //Resident Handlers
         CreateResidentHandler createResidentHandler = new CreateResidentHandler();
 
 

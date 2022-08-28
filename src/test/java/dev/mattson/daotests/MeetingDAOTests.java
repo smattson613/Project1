@@ -43,7 +43,7 @@ public class MeetingDAOTests {
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     void get_meeting_by_id_test() {
         Meeting meeting = meetingDAO.getMeetingById(1);
         Assertions.assertEquals("Town Hall",meeting.getAddress());
