@@ -57,14 +57,14 @@ public class MeetingDAOTests {
     }
 
 
-    @AfterAll
-    static void teardown() {
-        try (Connection conn = ConnectionUtil.createConnection()) {
-            String sql = "drop table meeting";
-            Statement statement = conn.createStatement();
-            statement.execute(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+//    @AfterAll
+//    static void teardown() {
+//        try (Connection conn = ConnectionUtil.createConnection()) {
+//            String sql = "drop table meeting";
+//            Statement statement = conn.createStatement();
+//            statement.execute(sql);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

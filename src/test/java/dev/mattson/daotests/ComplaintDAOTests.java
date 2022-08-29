@@ -20,23 +20,23 @@ public class ComplaintDAOTests {
 
     static ComplaintDAO complaintDAO = new ComplaintDAOPostgres();
 
-//    @BeforeAll
-//    static void setup(){
-//        try(Connection conn = ConnectionUtil.createConnection()){
-//            String sql = "create table complaint(\n" +
-//                    "complaintId serial primary key,\n" +
-//                    "title varchar(40) not null,\n" +
-//                    "description varchar(180) not null,\n" +
-//                    "status varchar(15) default 'UNREVIEWED',\n" +
-//                    "meetingId int references meeting(meetingId) default -1\n" +
-//                    ");";
-//            Statement statement = conn.createStatement();
-//            statement.execute(sql);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @BeforeAll
+    static void setup(){
+        try(Connection conn = ConnectionUtil.createConnection()){
+            String sql = "create table complaint(\n" +
+                    "complaintId serial primary key,\n" +
+                    "title varchar(40) not null,\n" +
+                    "description varchar(180) not null,\n" +
+                    "status varchar(15) default 'UNREVIEWED',\n" +
+                    "meetingId int references meeting(meetingId) default -1\n" +
+                    ");";
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Test
     @Order(1)
@@ -80,14 +80,14 @@ public class ComplaintDAOTests {
         Assertions.assertEquals(1,complaintList.size());
     }
 
-//    @AfterAll
-//    static void teardown() {
-//        try (Connection conn = ConnectionUtil.createConnection()) {
-//            String sql = "drop table complaint";
-//            Statement statement = conn.createStatement();
-//            statement.execute(sql);
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
+    @AfterAll
+    static void teardown() {
+        try (Connection conn = ConnectionUtil.createConnection()) {
+            String sql = "drop table complaint";
+            Statement statement = conn.createStatement();
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
